@@ -16,15 +16,15 @@
 ## Action Plan
 - Collect required information.
 - Backend project setup.
-- Design model 
-![model](./assets/sm-be-model.PNG)
--> user model
-- ![User Model](./assets/sm-be-user-model.PNG)
--> client model
-- ![Client Model](./assets/sm-be-client-model.PNG)
--> & customer model
-- ![Customer Model](./assets/sm-be-customers-model.PNG)
-    [add as per requirement in future]
+- Design model <br>
+    ![model](./assets/sm-be-model.PNG)
+    - -> user model <br>
+    ![User Model](./assets/sm-be-user-model.PNG)
+    - -> client model <br>
+    ![Client Model](./assets/sm-be-client-model.PNG)
+    - -> & customer model <br>
+    ![Customer Model](./assets/sm-be-customers-model.PNG) <br>
+    [add as per requirement in future] 
 - Designed & developed backend
 - Specify "User" route
 ```
