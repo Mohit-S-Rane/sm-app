@@ -3,7 +3,6 @@ import { ApiError } from "../utils/ApiError.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
 import { User } from "../models/user.models.js";
 import { Client } from "../models/client.models.js"
-import jwt from "jsonwebtoken"
 
 const registerClient = asyncHandler(async (req, res) => {
     const { clientName, role, emailId, mobileNo, address, subStartDate, subEndDate, password } = req.body
@@ -46,7 +45,7 @@ const registerClient = asyncHandler(async (req, res) => {
 const updateClientDetails = asyncHandler(async (req, res) => {
     const { clientName, role, emailId, mobileNo, address, subStartDate, subEndDate, password } = req.body
 
-    const client = await Client.findOne({emailId})
+    const client = await Client.findOne({ emailId })
 
     const updatedClient = {
         clientName,
@@ -74,14 +73,49 @@ const updateClientDetails = asyncHandler(async (req, res) => {
 })
 
 const removeClient = asyncHandler(async (req, res) => {
-    const { emailId } = req.body
-    const getClient = await Client.findOne({emailId})
+    console.log(req.params);
+
+    const emailId = req.params.id
+    // console.log(emailId);
+    const getClient = await Client.findOne({ emailId })
+    console.log(emailId);
     const clientId = getClient._id
     const result = await Client.findByIdAndDelete(clientId);
 
     return res
-    .status(200)
-    .json(new ApiResponse(200, {}, "remove client successfully"))
+        .status(200)
+        .json(new ApiResponse(200, {}, "remove client successfully"))
 })
 
-export { registerClient, updateClientDetails, removeClient }
+const getAllClient = asyncHandler(async (req, res) => {
+    const allClient = await Client.find({})
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, allClient, "fetch client successfully"))
+})
+
+const clientLogin = asyncHandler(async (req, res) => {
+    const { emailId, password } = req.body
+    const existedClient = await Client.findOne({
+        $and: [{ emailId }, { password }]
+    })
+
+    if (existedClient) {
+        throw new ApiError(409, "Client with email or mobile no is already exist")
+    }
+
+    const subEndDate = Date.parse(existedClient.subEndDate);
+    const todaydate = Date.parse(Date.now());
+
+    // console.log(d1);
+    // console.log(d2);
+
+    if (subEndDate > todaydate) {
+        res.json({ message: 'Login successful', todaydate });
+    } else {
+        res.status(403).json({ message: 'Subscription expired' });
+    }
+})
+
+export { registerClient, updateClientDetails, removeClient, getAllClient, clientLogin }
