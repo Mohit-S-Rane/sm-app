@@ -1,0 +1,30 @@
+<form (ngSubmit)="this.signupForm.valid && signup()" [formGroup]="this.signupForm" class="overlay" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="2rem">
+    <mat-card class="mat-card" fxLayout="column" fxLayoutGap="1rem">
+        <h2>Signup Form</h2>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input type="email" formControlName="emailId" matInput placeholder="Email">
+            <mat-error>Enter valid email</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input type="text" formControlName="name" matInput placeholder="Name">
+            <mat-error>Enter valid name</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input type="password" formControlName="password" matInput placeholder="Password">
+            <mat-error>Enter correct password</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Mobile No</mat-label>
+            <input type="number" formControlName="mobileNo" matInput placeholder="Mobile No">
+            <mat-error>Enter correct Mobile Number</mat-error>
+        </mat-form-field>
+
+        <div class="mt-20" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="1rem">
+            <button type="button" (click)="login()" mat-raised-button>Login</button>
+            <button type="button" (click)="signup()" mat-raised-button>Signup</button>
+        </div>
+    </mat-card>
+</form>

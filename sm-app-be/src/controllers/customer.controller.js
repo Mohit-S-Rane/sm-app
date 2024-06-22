@@ -72,7 +72,10 @@ const updateCustomerDetails = asyncHandler(async (req, res)=>{
 })
 
 const removeCustomer = asyncHandler(async (req, res)=>{
-    const { emailId } = req.body
+    console.log(req.params);
+
+    const emailId = req.params.id
+    // console.log(emailId);
     const getCustomer = await Customer.findOne({emailId})
     const result = await Customer.findByIdAndDelete(getCustomer._id);
 
@@ -81,4 +84,12 @@ const removeCustomer = asyncHandler(async (req, res)=>{
     .json(new ApiResponse(200, {}, "remove customer successfully"))
 })
 
-export { registerCustomer, updateCustomerDetails, removeCustomer }
+const getAllCustomer = asyncHandler(async (req, res)=>{
+    const allCustomer = await Customer.find({}) 
+    
+    return res
+    .status(200)
+    .json(new ApiResponse(200, allCustomer, "fetch customer successfully"))
+})
+
+export { registerCustomer, updateCustomerDetails, removeCustomer, getAllCustomer }
