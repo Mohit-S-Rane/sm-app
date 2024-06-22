@@ -1,0 +1,21 @@
+.side-nav {
+    background-color: #f4f4f4;
+    padding: 1rem;
+    width: 200px;
+    height: 100vh !important;
+}
+
+.side-nav ul {
+    list-style-type: none;
+    padding: 0;
+    height: 100% !important;
+}
+
+.side-nav li {
+    margin-bottom: 0.5rem;
+}
+
+.side-nav a {
+    text-decoration: none;
+    color: #333;
+}

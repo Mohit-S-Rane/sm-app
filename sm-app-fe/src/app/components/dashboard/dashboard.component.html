@@ -1,0 +1,28 @@
+<div fxLayout="column" fxLayoutAlign="space-between stretch">
+    <app-header></app-header>
+    <div class="main-layout" fxLayout="row" fxLayoutAlign="space-between stretch">
+        <app-side-nav></app-side-nav>
+        <main class="content">
+            <router-outlet></router-outlet>
+            <!-- <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of data">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.email }}</td>
+                    </tr>
+                </tbody>
+            </table> -->
+        </main>
+    </div>
+    <app-footer fxLayout="column" fxLayoutAlign="end"></app-footer>
+</div>
+
+

@@ -1,0 +1,79 @@
+<div fxLayout="row" fxLayoutAlign="space-around stretch" fxLayoutGap="10px">
+  <form [formGroup]="clientForm" (ngSubmit)="addClient()">
+    <mat-form-field>
+      <label>Name</label>
+      <input matInput formControlName="clientName" required>
+    </mat-form-field>
+    <mat-form-field>
+      <label>Email</label>
+      <input matInput formControlName="emailId" [readonly]="isClientInEditMode" required>
+    </mat-form-field>
+    <mat-form-field>
+      <label>Mobile</label>
+      <input matInput formControlName="mobileNo" required>
+    </mat-form-field>
+    <mat-form-field>
+      <label>Start Date</label>
+      <input matInput type="date" formControlName="subStartDate" required>
+    </mat-form-field>
+    <mat-form-field>
+      <label>End Date</label>
+      <input matInput type="date" formControlName="subEndDate" required>
+    </mat-form-field>
+    <mat-form-field>
+      <label>Password</label>
+      <input matInput type="password" formControlName="password" [readonly]="isClientInEditMode"  required>
+    </mat-form-field>
+    <mat-form-field>
+      <label>Confirm Password</label>
+      <input matInput type="password" formControlName="confirmPassword" [readonly]="isClientInEditMode"  required>
+    </mat-form-field>
+    <mat-form-field>
+      <label>Address</label>
+      <textarea matInput formControlName="address" required></textarea>
+    </mat-form-field>
+    <button mat-raised-button type="submit">{{updateText}}</button>
+  </form>
+</div>
+<table mat-table [dataSource]="clients" class="mat-elevation-z8">
+  <ng-container matColumnDef="clientName">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let client"> {{client.clientName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="emailId">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let client"> {{client.emailId}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="mobileNo">
+    <th mat-header-cell *matHeaderCellDef> Mobile </th>
+    <td mat-cell *matCellDef="let client"> {{client.mobileNo}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef> Address </th>
+    <td mat-cell *matCellDef="let client"> {{client.address}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="subStartDate">
+    <th mat-header-cell *matHeaderCellDef> subStartDate </th>
+    <td mat-cell *matCellDef="let client"> {{client.subStartDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="subEndDate">
+    <th mat-header-cell *matHeaderCellDef> subEndDate </th>
+    <td mat-cell *matCellDef="let client"> {{client.subEndDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let client">
+      <button mat-button (click)="editClient(client)">Edit</button>
+      <button mat-button (click)="deleteClient(client.emailId)">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['clientName', 'emailId', 'mobileNo', 'address', 'subStartDate', 'subEndDate', 'actions']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['clientName', 'emailId', 'mobileNo', 'address', 'subStartDate', 'subEndDate', 'actions'];"></tr>
+</table>

@@ -1,0 +1,22 @@
+<form (ngSubmit)="this.loginForm.valid && login()" [formGroup]="this.loginForm" class="overlay" fxLayout="column"
+  fxLayoutAlign="center center" fxLayoutGap="2rem">
+  <mat-card class="mat-card" fxLayout="column" fxLayoutGap="1rem">
+    <h2 class="fw-600">Client Login</h2>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" formControlName="email" matInput placeholder="Email*">
+      <mat-error>Enter Valid Email</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input type="password" formControlName="password" matInput placeholder="Password*">
+      <mat-error>Enter (4-8) Character valid password</mat-error>
+    </mat-form-field>
+    <a href="/forgot-password">Forgot Password</a>
+
+    <div class="mt-20" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="1rem">
+      <button type="submit" (click)="login()" class="fw-600" mat-raised-button>Login</button>
+    </div>
+    <mat-spinner *ngIf="this.loading" diameter="40"></mat-spinner>
+  </mat-card>
+</form>
